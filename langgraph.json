@@ -1,0 +1,9 @@
+{
+    "dependencies": [
+        "./requirements.txt"
+    ],
+    "graphs": {
+        "my_agent": "./graph.py:create_customer_support_agent"
+    },
+    "env": "./.env"
+}
