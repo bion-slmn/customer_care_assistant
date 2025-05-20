@@ -11,11 +11,14 @@ def interact_with_customer_assistant(customer_assistant):
     """
     thread = {"configurable": {"thread_id": "5"}}
 
-    # Initial user input (text + image)
-    content = [
-        {"type": "text", "text": "look at what you delivered, can i get a refund"},
-        {"type": "image_url", "image_url": "https://ceramike.com/wp-content/uploads/2022/08/Broken-Ceramic-Mug.jpg"},
-    ]
+    # Get initial input from user
+    user_text = input("Enter your message: ")
+    image_url = input("Enter image URL (optional, press enter to skip): ").strip()
+
+    content = [{"type": "text", "text": user_text}]
+    if image_url:
+        content.append({"type": "image_url", "image_url": image_url})
+
     initial_input = {"messages": HumanMessage(content=content)}
 
     # Start initial conversation
@@ -40,5 +43,6 @@ def interact_with_customer_assistant(customer_assistant):
             event["messages"][-1].pretty_print()
 
 
-customer_asistant = create_customer_support_agent()
-interact_with_customer_assistant(customer_asistant)
+# Initialize and run the assistant
+customer_assistant = create_customer_support_agent()
+interact_with_customer_assistant(customer_assistant)
